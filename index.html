@@ -2,6 +2,10 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>祖源选词填空练习系统</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
@@ -507,6 +511,7 @@
                 
                 <div class="btn-row">
                     <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+                    <button class="btn btn-secondary" id="checkBtn" onclick="checkAnswers()" style="background:#eff6ff;color:#1d4ed8;">检查答案</button>
                     <button class="btn btn-primary" id="submitBtn" onclick="showAnswers()">查看答案</button>
                     <button class="btn btn-primary" id="nextBtn" onclick="nextArticle()" style="display:none;">下一篇 →</button>
                 </div>
@@ -573,7 +578,20 @@ function init() {
       "fire",
       "together"
     ],
-    "articleIndex": 1
+    "articleIndex": 1,
+    "answers": {
+      "1": "fire",
+      "2": "as",
+      "3": "much",
+      "4": "they",
+      "5": "skills",
+      "6": "get",
+      "7": "if",
+      "8": "clean",
+      "9": "repair",
+      "10": "more",
+      "11": "dangerous"
+    }
   },
   {
     "id": 2,
@@ -608,7 +626,21 @@ function init() {
       "strong",
       "cultural"
     ],
-    "articleIndex": 2
+    "articleIndex": 2,
+    "answers": {
+      "3": "3",
+      "4": "4",
+      "12": "job",
+      "13": "ancient",
+      "14": "To prepare",
+      "15": "to paint",
+      "16": "Even",
+      "17": "culture",
+      "18": "understands",
+      "19": "even",
+      "20": "felt",
+      "21": "strong"
+    }
   },
   {
     "id": 3,
@@ -631,7 +663,14 @@ function init() {
       "throughout",
       "pay attention to"
     ],
-    "articleIndex": 3
+    "articleIndex": 3,
+    "answers": {
+      "22": "forgot",
+      "23": "pay attention to",
+      "24": "Throughout",
+      "25": "finally",
+      "26": "meaning"
+    }
   },
   {
     "id": 4,
@@ -655,7 +694,19 @@ function init() {
     "options": [
       "and at became clothes festival how in make nice she slowly what"
     ],
-    "articleIndex": 4
+    "articleIndex": 4,
+    "answers": {
+      "27": "make",
+      "28": "clothes",
+      "29": "slowly",
+      "30": "in",
+      "31": "nice",
+      "32": "became",
+      "33": "how",
+      "34": "festivals",
+      "35": "and",
+      "36": "Her"
+    }
   },
   {
     "id": 5,
@@ -678,7 +729,14 @@ function init() {
       "instead of",
       "newly planted"
     ],
-    "articleIndex": 5
+    "articleIndex": 5,
+    "answers": {
+      "37": "break things apart",
+      "38": "instead of",
+      "39": "newly planted",
+      "40": "his journey",
+      "41": "do their part in"
+    }
   },
   {
     "id": 6,
@@ -712,7 +770,20 @@ function init() {
       "what",
       "never"
     ],
-    "articleIndex": 6
+    "articleIndex": 6,
+    "answers": {
+      "5": "5",
+      "42": "take",
+      "43": "what",
+      "44": "cleaner",
+      "45": "provide",
+      "46": "sweep",
+      "47": "rubbish",
+      "48": "again",
+      "49": "make",
+      "50": "never",
+      "51": "easy"
+    }
   },
   {
     "id": 7,
@@ -747,7 +818,20 @@ function init() {
       "show",
       "till"
     ],
-    "articleIndex": 7
+    "articleIndex": 7,
+    "answers": {
+      "15": "15",
+      "52": "till",
+      "53": "shows",
+      "54": "find",
+      "55": "busy",
+      "56": "easy",
+      "57": "quick",
+      "58": "became",
+      "59": "job",
+      "60": "her",
+      "61": "for"
+    }
   },
   {
     "id": 8,
@@ -780,7 +864,19 @@ function init() {
       "into",
       "choose"
     ],
-    "articleIndex": 8
+    "articleIndex": 8,
+    "answers": {
+      "62": "hours",
+      "63": "choice",
+      "64": "cook",
+      "65": "into",
+      "66": "are",
+      "67": "needs",
+      "68": "usually",
+      "69": "Workers",
+      "70": "better",
+      "71": "when"
+    }
   },
   {
     "id": 9,
@@ -814,7 +910,20 @@ function init() {
       "minute",
       "come"
     ],
-    "articleIndex": 9
+    "articleIndex": 9,
+    "answers": {
+      "8": "8",
+      "72": "from",
+      "73": "late",
+      "74": "leaves",
+      "75": "cleans",
+      "76": "always",
+      "77": "friendly",
+      "78": "because",
+      "79": "minutes",
+      "80": "her",
+      "81": "coming"
+    }
   },
   {
     "id": 10,
@@ -857,7 +966,29 @@ function init() {
       "work",
       "call"
     ],
-    "articleIndex": 10
+    "articleIndex": 10,
+    "answers": {
+      "82": "call",
+      "83": "take",
+      "84": "Their",
+      "85": "prepares",
+      "86": "workers",
+      "87": "pandas'",
+      "88": "fresher",
+      "89": "well",
+      "90": "be",
+      "91": "raised",
+      "92": "working",
+      "93": "has",
+      "94": "things",
+      "95": "its",
+      "96": "with",
+      "97": "help",
+      "98": "comfortable",
+      "99": "usually",
+      "100": "because",
+      "101": "making"
+    }
   },
   {
     "id": 11,
@@ -902,7 +1033,29 @@ function init() {
       "boxes",
       "comfortable"
     ],
-    "articleIndex": 11
+    "articleIndex": 11,
+    "answers": {
+      "102": "raise",
+      "103": "as",
+      "104": "her",
+      "105": "liked",
+      "106": "When",
+      "107": "said",
+      "108": "job",
+      "109": "Chinese",
+      "110": "make sure",
+      "111": "tiring",
+      "112": "boxes",
+      "113": "fashion",
+      "114": "clothes",
+      "115": "take",
+      "116": "following",
+      "117": "height",
+      "118": "teeth",
+      "119": "sending",
+      "120": "usually",
+      "121": "has"
+    }
   },
   {
     "id": 12,
@@ -936,7 +1089,19 @@ function init() {
       "her",
       "said"
     ],
-    "articleIndex": 12
+    "articleIndex": 12,
+    "answers": {
+      "122": "what",
+      "123": "wanted",
+      "124": "But",
+      "125": "idea",
+      "126": "interested",
+      "127": "own",
+      "128": "nervous",
+      "129": "doing",
+      "130": "popular",
+      "131": "with"
+    }
   },
   {
     "id": 13,
@@ -969,7 +1134,19 @@ function init() {
       "tooth",
       "fashion"
     ],
-    "articleIndex": 13
+    "articleIndex": 13,
+    "answers": {
+      "132": "as",
+      "133": "skills",
+      "134": "them",
+      "135": "skills",
+      "136": "get",
+      "137": "if",
+      "138": "are",
+      "139": "repair",
+      "140": "more",
+      "141": "dangerous"
+    }
   },
   {
     "id": 14,
@@ -1012,7 +1189,29 @@ function init() {
       "whether",
       "regret"
     ],
-    "articleIndex": 1
+    "articleIndex": 1,
+    "answers": {
+      "1": "home",
+      "2": "found",
+      "3": "lamp",
+      "4": "lonely",
+      "5": "arm",
+      "6": "his",
+      "7": "policeman",
+      "8": "then",
+      "9": "9",
+      "10": "proud",
+      "11": "normal",
+      "12": "lonely",
+      "13": "refuse",
+      "14": "courage",
+      "15": "truth",
+      "16": "progress",
+      "17": "influence",
+      "18": "regret",
+      "19": "what",
+      "20": "proud"
+    }
   },
   {
     "id": 15,
@@ -1048,7 +1247,20 @@ function init() {
       "conversation",
       "upon"
     ],
-    "articleIndex": 2
+    "articleIndex": 2,
+    "answers": {
+      "3": "3",
+      "21": "term",
+      "22": "If",
+      "23": "for",
+      "24": "pressure",
+      "25": "lazy",
+      "26": "conversation",
+      "27": "disappointed",
+      "28": "continue",
+      "29": "upon",
+      "30": "peers"
+    }
   },
   {
     "id": 16,
@@ -1081,7 +1293,19 @@ function init() {
       "final",
       "good"
     ],
-    "articleIndex": 3
+    "articleIndex": 3,
+    "answers": {
+      "31": "compared",
+      "32": "unfair",
+      "33": "painting",
+      "34": "skills",
+      "35": "enter",
+      "36": "yourself",
+      "37": "finally",
+      "38": "one",
+      "39": "surprised",
+      "40": "better"
+    }
   },
   {
     "id": 17,
@@ -1132,7 +1356,35 @@ function init() {
       "right",
       "something"
     ],
-    "articleIndex": 4
+    "articleIndex": 4,
+    "answers": {
+      "9": "9",
+      "41": "instead",
+      "42": "take",
+      "43": "example",
+      "44": "something",
+      "45": "like",
+      "46": "but",
+      "47": "attention",
+      "48": "right",
+      "49": "trust",
+      "50": "ready",
+      "51": "pressure",
+      "52": "nervous",
+      "53": "began",
+      "54": "joke",
+      "55": "Finally",
+      "56": "sofa",
+      "57": "promise",
+      "58": "going",
+      "59": "realised",
+      "60": "elderly",
+      "61": "lamp",
+      "62": "pale",
+      "63": "attached",
+      "64": "policeman",
+      "65": "angry"
+    }
   },
   {
     "id": 18,
@@ -1159,7 +1411,19 @@ function init() {
       "joke",
       "begin"
     ],
-    "articleIndex": 5
+    "articleIndex": 5,
+    "answers": {
+      "66": "argue",
+      "67": "with",
+      "68": "Children",
+      "69": "wrong",
+      "70": "don't",
+      "71": "Relations",
+      "72": "communication",
+      "73": "to allow",
+      "74": "Instead",
+      "75": "important"
+    }
   },
   {
     "id": 19,
@@ -1202,8 +1466,31 @@ function init() {
       "do",
       "child"
     ],
-    "articleIndex": 6
+    "articleIndex": 6,
+    "answers": {
+      "76": "with",
+      "77": "interested",
+      "78": "classmates",
+      "79": "and",
+      "80": "run",
+      "81": "him",
+      "82": "because",
+      "83": "more",
+      "84": "sharing",
+      "85": "it",
+      "86": "begin",
+      "87": "but",
+      "88": "feeling",
+      "89": "enjoying",
+      "90": "the",
+      "91": "of",
+      "92": "are",
+      "93": "when",
+      "94": "confidence",
+      "95": "instead"
+    }
   }
+]
 ];
     
     // 加载进度
@@ -1287,6 +1574,7 @@ function startPractice(id) {
     document.getElementById('blankCount').textContent = currentArticle.blanks.length;
     document.getElementById('optCount').textContent = currentArticle.options.length;
     document.getElementById('submitBtn').style.display = '';
+    document.getElementById('checkBtn').style.display = '';
     document.getElementById('nextBtn').style.display = 'none';
     document.getElementById('hintBox').classList.remove('show');
     
@@ -1376,6 +1664,7 @@ function showAnswers() {
     showAnswered = true;
     
     document.getElementById('submitBtn').style.display = 'none';
+    document.getElementById('checkBtn').style.display = 'none';
     document.getElementById('nextBtn').style.display = '';
     
     const inputs = Array.from(document.querySelectorAll('.blank-input'));
@@ -1402,6 +1691,74 @@ function showAnswers() {
     document.getElementById('hintBox').innerHTML = 
         `✅ 已填入 <strong>${filled}</strong>/${total} 个空格（${pct}%）` +
         (filled < total ? `<br>⚠️ 还有 <strong>${total-filled}</strong> 个空格未填写，再试试吧！` : ' 🎉 全部填完了！');
+    document.getElementById('hintBox').classList.add('show');
+}
+
+function checkAnswers() {
+    if (!currentArticle || !currentArticle.answers) {
+        document.getElementById('hintBox').innerHTML = '⚠️ 本题暂无答案数据';
+        document.getElementById('hintBox').classList.add('show');
+        return;
+    }
+
+    // 先清除之前的检查状态
+    document.querySelectorAll('.blank-input').forEach(inp => {
+        inp.classList.remove('correct', 'wrong');
+        inp.style.background = '';
+        inp.style.borderColor = '';
+        inp.style.borderBottom = '';
+    });
+    // 移除旧的检查图标
+    document.querySelectorAll('.check-icon').forEach(el => el.remove());
+
+    const inputs = Array.from(document.querySelectorAll('.blank-input'));
+    let correctCount = 0;
+    let totalAnswered = 0;
+    const answers = currentArticle.answers;
+
+    inputs.forEach(inp => {
+        const blankNum = inp.dataset.blank;
+        const userVal = inp.value.trim();
+        const correctVal = answers[blankNum];
+
+        if (!userVal) return; // 未填写的跳过
+
+        totalAnswered++;
+        const isCorrect = userVal.toLowerCase() === correctVal.toLowerCase();
+
+        if (isCorrect) {
+            correctCount++;
+            inp.classList.add('correct');
+            inp.style.background = '#dcfce7';
+            inp.style.borderBottom = '2px solid #16a34a';
+            inp.style.borderColor = '#16a34a';
+            // 插入 ✓ 图标
+            const icon = document.createElement('span');
+            icon.className = 'check-icon';
+            icon.textContent = ' ✓';
+            icon.style.color = '#16a34a';
+            icon.style.fontWeight = 'bold';
+            inp.parentNode.insertBefore(icon, inp.nextSibling);
+        } else {
+            inp.classList.add('wrong');
+            inp.style.background = '#fef2f2';
+            inp.style.borderBottom = '2px solid #ef4444';
+            inp.style.borderColor = '#ef4444';
+            // 插入 ✗ 图标
+            const icon = document.createElement('span');
+            icon.className = 'check-icon';
+            icon.textContent = ' ✗';
+            icon.style.color = '#ef4444';
+            icon.style.fontWeight = 'bold';
+            inp.parentNode.insertBefore(icon, inp.nextSibling);
+        }
+    });
+
+    const totalBlanks = inputs.length;
+    document.getElementById('hintBox').innerHTML =
+        `<strong>检查结果：</strong>正确 <span style="color:#16a34a;font-weight:bold;">${correctCount}</span> / ${totalAnswered} 题已答，共 ${totalBlanks} 个空格` +
+        (totalAnswered < totalBlanks ? `<br>⚠️ 还有 <strong>${totalBlanks - totalAnswered}</strong> 个空格未填写` : '') +
+        (correctCount === totalAnswered && totalAnswered === totalBlanks ? ' 🎉 全部正确！' : '');
     document.getElementById('hintBox').classList.add('show');
 }
 
