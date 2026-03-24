@@ -1669,15 +1669,56 @@ function showAnswers() {
     let filled = 0;
     let total = inputs.length;
     
+    const answers = currentArticle.answers || {};
+    let correctCount = 0;
+
     inputs.forEach(inp => {
+        const blankNum = inp.dataset.blank;
         const val = inp.value.trim();
-        if (val) {
-            filled++;
+        const correctVal = answers[blankNum] || '';
+        
+        inp.readOnly = true;
+
+        if (val && val.toLowerCase() === correctVal.toLowerCase()) {
+            // 填了且正确
+            correctCount++;
             inp.classList.add('correct');
-            inp.readOnly = true;
-        } else {
+            inp.style.background = '#dcfce7';
+            inp.style.borderBottom = '2px solid #16a34a';
+            const icon = document.createElement('span');
+            icon.className = 'check-icon';
+            icon.textContent = ' ✓';
+            icon.style.color = '#16a34a';
+            icon.style.fontWeight = 'bold';
+            inp.parentNode.insertBefore(icon, inp.nextSibling);
+        } else if (val && val.toLowerCase() !== correctVal.toLowerCase()) {
+            // 填了但错误：显示正确答案
+            inp.value = correctVal;
+            inp.classList.add('wrong');
             inp.style.background = '#fef2f2';
+            inp.style.borderBottom = '2px solid #ef4444';
+            const icon = document.createElement('span');
+            icon.className = 'check-icon';
+            icon.textContent = ' ✗→' + correctVal;
+            icon.style.color = '#ef4444';
+            icon.style.fontWeight = 'bold';
+            icon.style.fontSize = '12px';
+            inp.parentNode.insertBefore(icon, inp.nextSibling);
+        } else {
+            // 未填写：自动填入正确答案
+            inp.value = correctVal;
+            inp.classList.add('revealed');
+            inp.style.background = '#fffbeb';
+            inp.style.borderBottom = '2px solid #f59e0b';
+            inp.style.color = '#b45309';
+            const icon = document.createElement('span');
+            icon.className = 'check-icon';
+            icon.textContent = ' ?';
+            icon.style.color = '#f59e0b';
+            icon.style.fontWeight = 'bold';
+            inp.parentNode.insertBefore(icon, inp.nextSibling);
         }
+        filled++;
     });
     
     // 标记完成
@@ -1685,10 +1726,10 @@ function showAnswers() {
     localStorage.setItem('cloze-progress', JSON.stringify([...answered]));
     updateStats();
     
-    const pct = total > 0 ? Math.round(filled/total*100) : 0;
+    const pct = total > 0 ? Math.round(correctCount/total*100) : 0;
     document.getElementById('hintBox').innerHTML = 
-        `✅ 已填入 <strong>${filled}</strong>/${total} 个空格（${pct}%）` +
-        (filled < total ? `<br>⚠️ 还有 <strong>${total-filled}</strong> 个空格未填写，再试试吧！` : ' 🎉 全部填完了！');
+        `📖 答案已显示！正确 <strong>${correctCount}</strong>/${total}（${pct}%）` +
+        `<br><span style="color:#16a34a;">绿色=正确</span> · <span style="color:#ef4444;">红色=错误</span> · <span style="color:#b45309;">黄色=未填（已补上答案）</span>`;
     document.getElementById('hintBox').classList.add('show');
 }
 
