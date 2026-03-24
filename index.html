@@ -537,14 +537,674 @@ let activeBlank = null;
 let showAnswered = false;
 
 // 初始化
-async function init() {
-    try {
-        const resp = await fetch('cloze.json');
-        questions = await resp.json();
-    } catch(e) {
-        console.error('Failed to load cloze.json:', e);
-        return;
-    }
+function init() {
+    // 题库数据内嵌
+    questions = [
+  {
+    "id": 1,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Would you like to be a firefighter when you grow up? Do you ",
+    "passage": "Would you like to be a firefighter when you grow up? Do you want to know what firefighters do?\nWhen a___1___starts, firefighters must get to the scene quickly and work at once. They also need to work___2___a team. Everyone on the team has to know what to do. Every day firefighters practice___3___so that they will be ready for fires. They also learn new ways to put out fires and new things to help___4___do their jobs well. Then they practice those new___5___.\nFirefighters help people who are hurt in a fire. They___6___training in first aid (急救). When they find people get hurt, they give them first aid at once.\nFirefighters do their jobs well___7___they are healthy. They also do their jobs well when their trucks and tools are___8___and ready to use. So firefighters exercise every day to keep their bodies strong. They also clean and___9___trucks and tools.\nThe___10___people know about fire safety, the safer people will be. Firefighters often teach people about fire safety. They tell people how to stop fires and what to do if there is a fire. Fires are___11___and can be scary. But firefighters are always there to help keep people safe.",
+    "blanks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "options": [
+      "much",
+      "get",
+      "danger",
+      "as",
+      "clean",
+      "they",
+      "skill",
+      "repair",
+      "if",
+      "fire",
+      "together"
+    ],
+    "articleIndex": 1
+  },
+  {
+    "id": 2,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "We all know Yang Guifei was a great beauty during the Tang D",
+    "passage": "We all know Yang Guifei was a great beauty during the Tang Dynasty in ancient times. Recently someone has brought her “back to life” in Xi’an.\nWang Yu is from Shaanxi. She has a special___12___. Every day she dresses like a(n)___13___Chinese woman in a cultural block. She works up to nine hours a day.___14___for her work, she spends___3___to___4___hours putting on makeup and getting dressed every day. The flowers on her f ace look good, but are hard___15___. After lots of practice, Wang can now paint them all by herself.___16___tired, she enjoys her work very much. Because she can spread traditional Chinese___17___while working.\nNot everyone___18___what Wang is doing. “There are people who like me, and people who don’t like me. Some___19___say something bad about me,” said Wang. Actually, it was not the first time she___20___bad about herself. She also had many dark days after becoming fat because of an illness. But Wang is a(n)___21___girl. Her love for hanfu helps her get through dark times! When she puts on hanfu, she feels happy and confident. She says, “I think being fat or thin is not important. You should just dress as you like and be happy and kind.”",
+    "blanks": [
+      3,
+      4,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "options": [
+      "paint",
+      "even",
+      "job",
+      "prepare",
+      "though",
+      "feel",
+      "ancient",
+      "understand",
+      "strong",
+      "cultural"
+    ],
+    "articleIndex": 2
+  },
+  {
+    "id": 3,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Last month, I joined a school speech competition. At first, ",
+    "passage": "Last month, I joined a school speech competition. At first, I was a little afraid—my speech skills were far from good, and I always___22___words during practice.\nMy teacher reminded me to___23___the message rather than just words. “Speak like you’re talking to a friend,” she said.___24___the practice, I recorded myself and solved the problems. Slowly, I felt better. When I was___25___standing on the stage, I took a deep breath and started. Surprisingly, the words came smoothly.\nThat experience taught me the real___26___of speech: It’s not just about speaking well, but connecting with others. Now, I no longer fear public speaking. Every time I stand up to talk, I remember that progress comes from trying.",
+    "blanks": [
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "options": [
+      "finally",
+      "meaning",
+      "forget",
+      "throughout",
+      "pay attention to"
+    ],
+    "articleIndex": 3
+  },
+  {
+    "id": 4,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "He Fengting is a girl from Guangzhou, born in the 1990s.She ",
+    "passage": "He Fengting is a girl from Guangzhou, born in the 1990s.She loves to___27___clothes, but she didn’t start by making traditional costumes. Her aunt makes a living by making Cantonese opera (粤剧)___28___. At first, He Fengting thought her aunt’s job was boring. However, her aunt’s stories about the clothes made her become interested in it___29___.\nShe learned to design clothes for opera stars___30___Guangdong. The clothes were of traditional style, with bright colors and beautiful patterns. “They look___31___on stage. I hope more people will know about them and love them,” she said. So she made small clothes for lovely dolls. These doll clothes soon___32___popular, too, because many young people liked dolls. She also thought about___33___to spread Chinese traditional costumes by making short videos on the Internet.\nNow, He Fengting also makes clothes for some Chinese traditional___34___like the Spring Festival, the Dragon Boat Festival and so on. There are many different kinds of nice patterns, such as dragons___35___flowers on the clothes. “Young people like them,” she says.___36___work is growing as she brings old skills to new things. “I hope more people around the world will love our culture,” she says.",
+    "blanks": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36
+    ],
+    "options": [
+      "and at became clothes festival how in make nice she slowly what"
+    ],
+    "articleIndex": 4
+  },
+  {
+    "id": 5,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Sandstorms have long caused problems in Minqin, Gansu. These",
+    "passage": "Sandstorms have long caused problems in Minqin, Gansu. These storms___37___and damage (损毁) farms and homes. To fight against this, 27-year-old Zhong Lin chose a special way.\nHe returned home in 2021 to plant trees___38___taking traditional jobs in cities. “Protecting the land is our job,” he said. The work is hard. A 2023 sandstorm killed most___39___trees, but Zhong kept planting. He shared___40___on Douyin and even joined a TV show.\n“Action beats worries,” he says. His story encourages young people to___41___saving nature.",
+    "blanks": [
+      37,
+      38,
+      39,
+      40,
+      41
+    ],
+    "options": [
+      "break things apart",
+      "do their part in",
+      "his journey",
+      "instead of",
+      "newly planted"
+    ],
+    "articleIndex": 5
+  },
+  {
+    "id": 6,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Some children dream of becoming adults. So they won’t have t",
+    "passage": "Some children dream of becoming adults. So they won’t have to do homework or___42___exams. That is to say, they won’t have stress from school anymore. But are things really like___43___they think?\nWang Jun’s mother is a___44___. Her job is to clean the park. Let’s see what she does every day. In order to___45___a clean environment for everyone, she has to get up at___5___a.m. to___46___the streets and collect___47___in the park. Then she goes home to make breakfast. The next day, she goes to the park to work___48___.\nIt’s not easy for Wang Jun’s mother to___49___money. His mother___50___wastes money. Being an adult is not as___51___as you think. So enjoy your school life.",
+    "blanks": [
+      5,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "options": [
+      "sweep",
+      "clean",
+      "take",
+      "rubbish",
+      "make",
+      "provide",
+      "again",
+      "easy",
+      "what",
+      "never"
+    ],
+    "articleIndex": 6
+  },
+  {
+    "id": 7,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Mary loved cooking from a young age. But she never thought a",
+    "passage": "Mary loved cooking from a young age. But she never thought about making it her career___52___she left her job to take care of her family. At that time, she spent much time reading cookbooks, watching cooking___53___, and trying out different foods in her kitchen.\nWhen she was ready to work again, she wanted to___54___a job about food and people. So she got an office job at a food company. One day, the kitchen was very___55___, so she helped out. Her boss saw her skills and asked her to stay in the kitchen team. At first, she only made___56___salads. Soon, she was cooking more difficult dishes. “Once I started, my love for cooking grew___57___,” Mary said.\nMary took cooking classes to improve her skills. She worked hard and___58___the manager of the company. After working for about___15___years, Mary began to think about her next___59___. Just then, her friend introduced her to a family needing a private cook. One year later,she started___60___own company called “Mary’s Kitchen”. Now she hosts cooking classes, tastings, and prepares meals___61___families and parties.\nNow, she leads a team of eighteen people. “If you are brave enough to try new things,” she says, “good chances will come to you.”",
+    "blanks": [
+      15,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61
+    ],
+    "options": [
+      "busy",
+      "become",
+      "but",
+      "easy",
+      "find",
+      "for\njob",
+      "must",
+      "quick",
+      "her",
+      "show",
+      "till"
+    ],
+    "articleIndex": 7
+  },
+  {
+    "id": 8,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Do you enjoy cooking for others? Can you stand up and work f",
+    "passage": "Do you enjoy cooking for others? Can you stand up and work for several___62___? Would you like to get hard training to get a better job? If so, food preparation may be a___63___for you!\nCooks and food preparation workers prepare all kinds of foods. They work in many kinds of restaurants. Cooks___64___dishes and prepare meals. Food preparation workers get everything ready to be cooked. They cut up fruits and vegetables. They cut meat___65___all kinds of shapes. They may have other duties (责任) like keeping the kitchen clean.\nThere always seem to be job openings in food preparation. Food preparation can be a promising (有前途的) job. There___66___many different kinds of jobs in food preparation. If a person___67___time to go to school, he can work as a part-time food preparation worker. Getting started in food preparation is easy. However, the work is___68___very hard at first.___69___must stand for several hours. They must be able to lift the heavy pots. Moving up to a___70___job can take a long time. But___71___you become a head cook, you will think the result is worth the efforts.",
+    "blanks": [
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71
+    ],
+    "options": [
+      "hour",
+      "need",
+      "cook",
+      "worker",
+      "good",
+      "be",
+      "when",
+      "usual",
+      "into",
+      "choose"
+    ],
+    "articleIndex": 8
+  },
+  {
+    "id": 9,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Mike is a bus driver. He loves his job and works very hard. ",
+    "passage": "Mike is a bus driver. He loves his job and works very hard. He works___8___hours a day,___72___7:00 in the morning to 3:00 in the afternoon, and he is never___73___for work. He always goes to work early and___74___late. He wants people to feel happy, so he___75___the bus every day to keep it tidy. He is happy every day and___76___says hello to every passenger (乘客) when they meet. He is___77___and does his best to help others. All the people like him.\nToday he arrives at a very small bus stop. Usually he doesn’t stop there___78___no one gets off or waits at the stop. But one man on the bus tells him that an old woman wants to get on. He quickly stops the bus. The old woman is not far from the stop but she walks very slowly. So Mike waits for about two___79___. Then he helps___80___to get on the bus and wants to close the door.\n“Please wait,” the old woman says. “My mother is___81___, too.”",
+    "blanks": [
+      8,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81
+    ],
+    "options": [
+      "because",
+      "she",
+      "always",
+      "leave",
+      "friend",
+      "late",
+      "from",
+      "clean",
+      "minute",
+      "come"
+    ],
+    "articleIndex": 9
+  },
+  {
+    "id": 10,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Panda keepers (饲养员) may be most people’s favorite job. It’s ",
+    "passage": "Panda keepers (饲养员) may be most people’s favorite job. It’s a job full of happiness and some panda fans always kindly___82___them “panda dad” or “panda mom”.\nAt a zoo in Dongguan, Guangdong Province, it’s necessary for three panda keepers to___83___care of the two pandas day in and day out.___84___names are Zhenda and Shuang’er.\nShi Hanrong arrives at the panda house at 7:00 a. m. every day. He cleans the doors of all rooms and___85___food for the pandas. Liu Qiao and Zhu Mingsheng are the other two___86___. They usually wash four baskets of bamboo shoots (竹笋) and weigh about___100___kilograms. These bamboo shoots are the two___87___main food for the day. Every two days, workers from Chengdu Research Base of Giant Panda Breeding prepare fresh bamboo shoots and send them by plane to the zoo. It’s to keep the bamboo shoots___88___than others.\n“I think, it’s not an easy job to take care of pandas___89___,” Liu said. Panda keepers should___90___responsible (有责任心的) and kind. And they should have working experience. That means they have___91___animals before.\nApollo is the name of a kind of new robot. Not long ago, it started___92___along with humans (人类) at a factory for the first time.\nApollo___93___two arms, two legs and two eyes. And it is about 172cm tall. Now its job is just to carry___94___and move them around the factory. But___95___designer (设计师), Apptronik, says future Apollo robot could help___96___housework around the home.\nNow a lot of robots are used to___97___doctors and policemen. But Apollo is the first human-like robot to be put to work in a human job. Compared to other robots, the human-like robot can make workers feel more___98___.\nHumans___99___work eight hours a day. But Apollo can only do a half-day job,___100___Apollo’s battery (电池) only lasts four hours.\nApptronik’s company has made two Apollo robots so far. And they are now___101___four more.",
+    "blanks": [
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101
+    ],
+    "options": [
+      "be",
+      "prepare",
+      "panda",
+      "take",
+      "they",
+      "fresh",
+      "raise",
+      "good",
+      "work",
+      "call"
+    ],
+    "articleIndex": 10
+  },
+  {
+    "id": 11,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Pandas are one of China’s treasures. They are so lovely that",
+    "passage": "Pandas are one of China’s treasures. They are so lovely that many foreign tourists come to China to see them every year.\nSome of the foreigners even choose to___102___pandas. Abe Nobuko from Japan, is one of them. She came to Sichuan many years ago and worked___103___a panda keeper. When Abe Nobuko was three years old, her grandmother bought___104___a toy panda. The little girl___105___it very much. She went everywhere with it.___106___Abe grew up, she learned a lot about pandas.\nOne day, her mother___107___to her, “You like pandas so much, Why don’t you find a___108___that has something to do with pandas?” Abe thought it was a great idea. In order to work in the panda zoo, Abe learned___109___in college. After graduation, she came to China to study about the animal protection. Three years later, she started working at a panda base in Sichuan.\nAbe does her best to___110___the pandas at the base are healthy and happy. The job is___111___, but Abe never complains (抱怨). “I love pandas and I love this job,” she says.\nDo you like pandas? If you do, then try to learn as much about pandas as you can!\nWhat do models do? They encourage people to buy clothes or other things they wear, like shoes or___112___. They model things in___113___shows or in photos for magazines and posters.\nThere are two main kinds of models:\nLive models model___114___on the catwalk. They may also work in fashion exhibition. Photo models___115___pictures for magazines, newspapers and ads. They show their gestures and expressions by___116___a photographer’s order.\nTo work as a model you need___117___and right “looks”. You should be in a good shape with healthy skin,___118___and hair. Girls should be at least 1.72m tall. Boys should be at least 1.83m tall.\nMost models usually start their work by___119___photos to a model company. Many model companies___120___look for models on the street. If a company___121___him or her, they’ll give him or her some training in skills. They also tell him or her about the rules of working at the model company.",
+    "blanks": [
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121
+    ],
+    "options": [
+      "for",
+      "with",
+      "because",
+      "usually",
+      "has",
+      "when",
+      "working",
+      "its",
+      "help",
+      "making",
+      "boxes",
+      "comfortable"
+    ],
+    "articleIndex": 11
+  },
+  {
+    "id": 12,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Like many young kids, I didn’t know     122     I wanted to ",
+    "passage": "Like many young kids, I didn’t know___122___I wanted to be when I was a middle school student. I just___123___to do well in my schoolwork.___124___when our teacher asked us to write an article about the dream job, I didn’t have any___125___. I had a discussion (讨论) with my parents. They wanted me to be a teacher, but I was not___126___in it.\nAfter I went to high school, I had my___127___ideas. I got a part-time job at the school radio station. At the beginning, I felt___128___. Later I started to like talking about school life and my favorite music on the radio. I even kept on___129___this job when I went to college. After I graduated, I got a full-time job at our local radio station. Now my program is___130___and I have lots of fans. What’s more, I have quite a good relationship___131___my workmates. I enjoy my job and my life now.",
+    "blanks": [
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131
+    ],
+    "options": [
+      "When",
+      "make sure",
+      "job",
+      "play with",
+      "liked",
+      "Chinese\nG. Though",
+      "stay with",
+      "tiring",
+      "as",
+      "her",
+      "said"
+    ],
+    "articleIndex": 12
+  },
+  {
+    "id": 13,
+    "unit": 1,
+    "unitTitle": "Career talks",
+    "topic": "生涯规划和工作与职业",
+    "title": "Would you like to be a firefighter (消防队员) when you grow up? ",
+    "passage": "Would you like to be a firefighter (消防队员) when you grow up? Do you want to know what firefighters do?\nWhen a fire starts, firefighters must get to the scene quickly and work at once. They also need to work___132___a team. Everyone on the team has to know what to do. Every day firefighters practice___133___so that they will be ready for fires. They also learn new ways to put out fires and new things to help___134___do their jobs well. Then they practice those new___135___.\nFirefighters help people who are hurt in a fire. They___136___training in first aid (急救). When they find people get hurt, they give them first aid at once.\nFirefighters do their jobs well___137___they are healthy. They also do their jobs well when their trucks and tools___138___clean and ready to use. So Firefighters exercise every day to keep their bodies strong. They also clean and___139___trucks and tools.\nThe___140___people know about fire safety, the safer people will be. Firefighters often teach people fire safety. They tell people how to stop fires and what to do if there is a fire. Fires are___141___and can be scary. But Firefighters are always there to help keep people safe.",
+    "blanks": [
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141
+    ],
+    "options": [
+      "follow",
+      "also",
+      "hat",
+      "good",
+      "take",
+      "accept",
+      "send",
+      "clothes",
+      "tooth",
+      "fashion"
+    ],
+    "articleIndex": 13
+  },
+  {
+    "id": 14,
+    "unit": 2,
+    "unitTitle": "Growing pains and gains",
+    "topic": "成长的烦恼与收获",
+    "title": "At 10:27 pm, a worried mum is in the living room when her so",
+    "passage": "At 10:27 pm, a worried mum is in the living room when her son arrives, out of breath. He promised to be___1___before___9___pm but he is late. He explains that at 8:30 he was heading back when he___2___his phone was at Jiacheng’s home and had to retrieve it.\nOn his way back for the phone, he saw an old woman under a street___3___, wearing a thin blouse and looking pale and cold. She was___4___and couldn’t tell her address. He noticed a yellow band on her___5___with her information but couldn’t call her family without his phone. So, he gave her___6___jacket, took her to the nearest police station, and waited until a___7___took her home. Then he ran to get his phone___8___came home.\nThe mum, initially cross, is___9___for being angry when she hears the story. She’s___10___of her son, who admits he didn’t think to call from the police station.\nGrowing up is not always easy for teenagers. It is___11___to meet problems in our life. We may feel___12___and nervous when we are in trouble. It is wrong to___13___to talk with our parents or teachers. We need to have enough___14___to face difficulties bravely. Try to find out the___15___and solve them by yourself. With their help, you can make___16___little by little. They___17___us and help us become better people. Don’t___18___what you have done when you try your best. What matters is___19___you can learn from mistakes. If you keep trying, you will surely make your parents feel___20___of you.",
+    "blanks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "options": [
+      "truth",
+      "lonely",
+      "proud",
+      "refuse",
+      "normal",
+      "courage",
+      "influence",
+      "progress",
+      "whether",
+      "regret"
+    ],
+    "articleIndex": 1
+  },
+  {
+    "id": 15,
+    "unit": 2,
+    "unitTitle": "Growing pains and gains",
+    "topic": "成长的烦恼与收获",
+    "title": "第2篇",
+    "passage": "Dear Brad,\nIn about___3___months, the___21___will end, and I will take a very important test.___22___I pass it with good grades, I can choose a good school to study in. Now I am trying my best___23___my dream. At the same time, I'm the monitor (班长) in my class. Balancing my schoolwork and my duties as a monitor has become quite challenging. I often feel the___24___of trying to do both well.\nLittle by little, I find myself becoming___25___.\nThe other day, my head teacher had a serious___26___with me. She told me that she was___27___in my poor performance as the class monitor. Her words really discouraged me and made me question my choices.\nShould I___28___as the class monitor or step down? I must do my best in school because my future is built___29___how well I do. Being a class monitor is also a valuable chance to learn and grow while working closely with my___30___. I don’t want to go to my parents for suggestions, for they will get worried about me. Can you tell me how to choose?\nYours,\nGates",
+    "blanks": [
+      3,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "options": [
+      "if",
+      "continue",
+      "since",
+      "realise",
+      "term",
+      "disappoint",
+      "for",
+      "lazy",
+      "peer",
+      "pressure",
+      "conversation",
+      "upon"
+    ],
+    "articleIndex": 2
+  },
+  {
+    "id": 16,
+    "unit": 2,
+    "unitTitle": "Growing pains and gains",
+    "topic": "成长的烦恼与收获",
+    "title": "Simon didn’t get on well with his parents in the past. He ha",
+    "passage": "Simon didn’t get on well with his parents in the past. He hardly talked to them because they always___31___him with his sister. Simon thought that it was very___32___, and he often fought with his parents about this.\nLater, Simon wanted to show his parents he could do things as well as his sister. Then he started to spend most of his free time___33___in his bedroom. Luckily, Miss Green, his art teacher, offered him a lot of help. She taught Simon some drawing___34___. With her help, Simon improved a lot.\nSimon trusted Miss Green very much. One day, Simon told Miss Green about his problem. Miss Green advised him to___35___a painting competition. She said to Simon, “The best way to communicate with your parents is to prove (证明)___36___to them.”\nAfter a few weeks, the result___37___came out. Simon was very happy and excited because he got___38___prize. When he took the prize home, his parents were___39___. They thought it was almost impossible for their son to do such a good job. They were very happy and started to care about Simon. Now relations between Simon and his parents are much___40___than before.",
+    "blanks": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "options": [
+      "enter",
+      "fair",
+      "paint",
+      "one",
+      "surprise",
+      "compare",
+      "you",
+      "skill",
+      "final",
+      "good"
+    ],
+    "articleIndex": 3
+  },
+  {
+    "id": 17,
+    "unit": 2,
+    "unitTitle": "Growing pains and gains",
+    "topic": "成长的烦恼与收获",
+    "title": "“Come on! Who wants to go to take that test? All of us are c",
+    "passage": "“Come on! Who wants to go to take that test? All of us are cutting (逃) math. We’re going to take a walk and get lunch___41___. Let’s go! “says the coolest kid in your class. At this moment, do you do what you know is right and go to math class to___42___the test? Or do you give in and go with them?\nThis situation is a(n)___43___of peer pressure —— when your peers try to influence (影响) how you act in order to get you to do___44___. Sometimes, this pressure can lead to negative actions,___45___cutting classes or saying something bad about a friend. It is difficult to be the only one who says “no” to peer pressure,___46___you can do it. Pay___47___to your own feelings and thoughts about what is right and wrong. This can help you know the___48___thing to do.\nIf you continue to face peer pressure and you’re finding it difficult to deal with, talk to someone you___49___. They can help you feel much better and get___50___for the next time you face peer pressure.\nI used to be very shy about speaking in front of my English class last term. I faced a lot of___51___because I struggled (挣扎) with the English course. I often felt___52___when the teacher called on me. One Monday morning, our English class___53___with a new topic. I was afraid to speak until my deskmate told a funny___54___. It made everyone laugh, and I suddenly felt relaxed. With my classmates’ encouragement, I tried to answer questions. I even made a small mistake, but no one laughed at me.___55___, I didn’t feel afraid anymore. That class taught me that courage could help us get through hard times. I will always remember this special day.\n短文填空（根据“亲子矛盾与理解”主题，每空填一个形式正确、语义相衬的单词）\nTom and his mum had a small argument last night. It was 10:15 pm when Tom got home, out of breath. His mum was sitting on the___56___（sofa/chair）, looking very angry. She asked Tom if he remembered his___57___（promise/plan）—to be back before___9___pm. Tom said he did, but he had a reason for being late.\nTom told his mum that he was___58___（touching/going）back at 8:40, but he___59___（realised/forgot）his notebook was at his classmate Lily’s house. He had to go back to get it. On the way to Lily’s house, he saw an___60___（elderly/young）woman standing under a street___61___（lamp/bulb）. She was wearing a thin coat and looked___62___（pale/healthy）. Tom asked her what was wrong, and she said she couldn’t find her way home.\nThe woman couldn’t tell Tom her address, but Tom found a red card___63___（attached/put）to her bag—it had her family’s phone number. Without his phone, Tom couldn’t call her family, so he walked with her to the nearest police station. He waited with her until a___64___（policewoman/policeman）contacted her family. Then the policeman let him go and he ran to get his notebook and went home.\nAfter hearing the story, Tom’s mum felt sorry for being___65___（angry/happy）with him. She got up from the sofa and said, “I’m very proud of you for helping that woman. Next time, try to tell me if you’ll be late.”",
+    "blanks": [
+      9,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "options": [
+      "but",
+      "ready",
+      "with",
+      "trust",
+      "instead",
+      "attention",
+      "example",
+      "if",
+      "like",
+      "take",
+      "right",
+      "something"
+    ],
+    "articleIndex": 4
+  },
+  {
+    "id": 18,
+    "unit": 2,
+    "unitTitle": "Growing pains and gains",
+    "topic": "成长的烦恼与收获",
+    "title": "When you are teenagers, it seems that every time you say “I ",
+    "passage": "When you are teenagers, it seems that every time you say “I want to…”, your parents answer “No, you can’t.” About this, you often___66___with your parents. Perhaps you get angry with them about it. If your parents don’t offer to talk___67___you, you may not want to talk with them for a long time.___68___often complain that their parents do not understand them. When something goes___69___, most parents think it is their kids’ fault without listening to any explanation. Many parents___70___allow their kids to make decisions or do anything by themselves.___71___between children and their parents are becoming worse and worse. As a child, I think if you want to get more freedom (自由), you should find more time for proper___72___with your parents and find a friendlier way to get what you want. If you want them___73___you to stay outside late, don’t just say “All the other kids can stay outside late.”___74___you should try to tell them what you want to do and where you will be. Oh, I think it is also___75___for you to tell them why you have to stay outside late. Then they might just say “Yes.”",
+    "blanks": [
+      66,
+      67,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75
+    ],
+    "options": [
+      "pressure",
+      "nervous",
+      "final",
+      "joke",
+      "begin"
+    ],
+    "articleIndex": 5
+  },
+  {
+    "id": 19,
+    "unit": 2,
+    "unitTitle": "Growing pains and gains",
+    "topic": "成长的烦恼与收获",
+    "title": "Students these days often have a lot of worries. Sometimes t",
+    "passage": "Students these days often have a lot of worries. Sometimes they have problems___76___their schoolwork, and they aren’t___77___in study. They think it is difficult to learn all the subjects well. Sometimes they have problems with their___78___. They can’t get on well with their friends. Sometimes they have problems with their family. They don’t know how to be with their family. What can they do about these?\nThe famous expert, Robert Hunt, thinks that problems___79___worries are normal in life. He asks the students not to___80___away from their problems and asks them to try to solve the problems. He thinks the first step is to find someone you trust to talk to. This person doesn’t need to be an expert like___81___. He may be one of your friends or either of your parents. If you tell them about your problems or worries, they will help you___82___they may have___83___experience than you.\nWhy must we share our problems or worries with others? In English, we say that___84___a problem is like cutting it in half. So you are halfway to solving a problem just by talking to someone about___85___.\nWhat can you do to help yourself get out of stress or worry? If you’re an artist, you can keep making art. And if you are not an artist, now is the time to take up an article hobby such as drawing or painting. It is never too late to___86___.\nEveryone can do it. If you can hold a brush or crayon, you can create art. Creating art heals (治愈) not only the mind and spirit___87___also the body.\nWhen you draw or paint, your breathing slows, your blood pressure lowers, and your mind lets go of daily problems. It not only relaxes you but also brings a___88___of joy.\nMaking art also allows you to play and try out new materials and methods. It also lets you express pleasure by___89___beauty, and creating art provides you a special chance to express your anger or upset, as well as your personal ideas.\nAlthough the process of making art is___90___most important part of all, your finished product is important too. Your painting or drawing will remind you___91___the lessons you learned while making it, and you may feel energetic just by looking at it.\nIf you don’t know how to begin, here___92___some ways to start creating art. If possible, prepare a small table with your brushes and watercolours. So you can draw or paint what you like___93___you get inspiration (灵感). Without thinking much about it, just choose colours that you like and start painting with___94___. Enjoying the colours and working on the colours will give you something happy___95___of the stresses of your daily life.",
+    "blanks": [
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "options": [
+      "instead",
+      "relation",
+      "communicate",
+      "wrong",
+      "with",
+      "allow",
+      "importance",
+      "argue",
+      "do",
+      "child"
+    ],
+    "articleIndex": 6
+  }
+];
     
     // 加载进度
     try {
@@ -647,7 +1307,7 @@ function renderPassage() {
     let html = currentArticle.passage;
     
     // 将 ___N___ 替换为输入框
-    html = html.replace(/___(\d+)___/g, (match, num) => {
+    html = html.replace(/_{3}(\d+)_{3}/g, (match, num) => {
         return `<span class="blank-label">(${num})</span><input type="text" class="blank-input" data-blank="${num}" 
             onfocus="onBlankFocus(this)" oninput="onBlankInput(this)" autocomplete="off" spellcheck="false">`;
     });
