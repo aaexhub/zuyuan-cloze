@@ -1595,8 +1595,7 @@ function renderPassage() {
     
     // 将 ___N___ 替换为输入框
     html = html.replace(/_{3}(\d+)_{3}/g, (match, num) => {
-        return `<span class="blank-label">(${num})</span><input type="text" class="blank-input" data-blank="${num}" 
-            onfocus="onBlankFocus(this)" oninput="onBlankInput(this)" autocomplete="off" spellcheck="false">`;
+        return `<span class="blank-label">(${num})</span><input type="text" class="blank-input" data-blank="${num}" onfocus="onBlankFocus(this)" oninput="onBlankInput(this)" autocomplete="off" spellcheck="false">`;
     });
     
     // 段落分割
